@@ -34,7 +34,28 @@ class Home extends React.Component<any> {
 	getArray = (num: number) => Array(num).fill(1).map((i, idx) => idx)
 
 	private shuffleMe = (row: number, col: number) => (event: any) => {
-		console.log(row, col);
+		const origin = [row - 1, col - 1].filter(v => v > -1);
+		const bottomRight = [row + 1, col + 1].filter(v => v < this.gridCols);
+		const bottomLeft = [row + 1, col - 1].filter((v, i) => {
+			if (i === 0) {
+				return v < this.gridRows;
+			}
+			return v > -1;
+		});
+		const topRight = [row - 1, col + 1].filter((v, i) => {
+			if (i === 0) {
+				return v > -1;
+			}
+			return v < this.gridCols;
+		});
+
+		const top = [row - 1, col].filter(v => v > -1);
+		const right = [row, col + 1].filter(v => v < this.gridCols);
+		const bottom = [row + 1, col].filter(v => v < this.gridRows);
+		const left = [row, col - 1].filter(v => v > -1);
+
+		// TODO: add algorithm
+
 
 
 		this.setState({});
